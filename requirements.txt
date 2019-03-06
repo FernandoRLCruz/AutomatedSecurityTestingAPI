@@ -1,0 +1,6 @@
+requests
+behave
+PyHamcrest
+psycopg2
+pycpfcnpj
+faker
