@@ -1,6 +1,7 @@
 
 def before_feature(context, feature):
-    context.service_center_url = context.config.userdata['']
+        print("inicio")     
+        #context.service_center_url = context.config.userdata['']
 
 
 
