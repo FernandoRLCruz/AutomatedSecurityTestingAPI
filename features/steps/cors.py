@@ -1,6 +1,9 @@
 import os
 import sys
 import json
+import requests
+import common.requests_generic as rg
+import ast
 PARENT_PATH = os.path.abspath("..")
 if PARENT_PATH not in sys.path:
     sys.path.insert(0, PARENT_PATH)
@@ -19,32 +22,47 @@ def get_url_method_data(context, url, method):
     context.name_domain = nameTemp.hostname
     context.method = method
 
-@when(u'I include the "{header}" and "{body}" to request')
-def include_header_body(context, header, body):
-    if header is None or header == ' ':
-        headers = {'Content-Type' : 'application/json'}
-
+@when(u'I include the "{headers}" and "{body}" to request')
+def include_header_body(context, headers, body):
     try:
-         if type(header) is not dict:
-            headers = json.loads(headers)
+         if headers is None or headers == ' ':
+            headers = {'Content-Type' : 'application/json'}
+
+         if type(headers) is not dict:
+            #headers = {'Content-Type' : 'application/json'}
+            context.header_value = json.loads(headers)
+            
+            
     
          if type(body) is not dict:
-            context.body = json.loads(body)
+            context.body_value = ast.literal_eval(body)
 
-    except:              
-        print("Not possible convert")
+    except Exception as e:              
+        print("Exception from include_header_body %s", e)
 
-when(u'I check result response')
-def include_header_body(context, header, body):
-    headers_temp = []
-    headers_origin = []
-    headers_temp.update(header)
-    protocol = context.url[:context.url.find(':')]
-    if protocol == "http" or protocol == "https":
-        domain_origin_attack = protocol + "://attackersite.com"
-    post_url_attack = context.name_domain + ".attackersite.com"
-    headers_origin.append(domain_origin_attack)
-    headers_origin.append(post_url_attack)
+@when(u'I check result response')
+def result_response(context):
+     try:
+         headers_temp = {}
+         headers_origin = {}
+         headers_temp.update(context.header_value)
+         protocol = context.url[:context.url.find(':')]
+         #get diferent origin urls
+         if protocol == "http" or protocol == "https":
+            domain_origin_attack = protocol + "://attackersite.com"
+         post_url_attack = context.name_domain + ".attackersite.com"
+
+         headers_origin.append(domain_origin_attack)
+         headers_origin.append(post_url_attack)
+
+         for origin_url in headers_origin:
+             headers_origin = {"origin_url", origin_url}
+             headers_temp.update(headers_origin)
+             if context.method.upper() == 'GET' or context.method.upper() == 'POST' or context.method.upper() == 'PUT':
+                context.response = rg.send_request_generic(context.url, "OPTIONS", headers_temp, context.body_value)
+
+     except Exception as e:              
+        print("Exception from result_response %s", e)
     
 
         
