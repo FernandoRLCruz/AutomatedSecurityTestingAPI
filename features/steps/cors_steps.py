@@ -2,8 +2,8 @@ import os
 import sys
 import json
 import requests
-import common.requests_generic as rg
 import ast
+import cors_core as cors
 PARENT_PATH = os.path.abspath("..")
 if PARENT_PATH not in sys.path:
     sys.path.insert(0, PARENT_PATH)
@@ -29,9 +29,7 @@ def include_header_body(context, headers, body):
             headers = {'Content-Type' : 'application/json'}
 
          if type(headers) is not dict:
-            #headers = {'Content-Type' : 'application/json'}
-            context.header_value = json.loads(headers)
-            
+            context.header_value = json.loads(headers)         
             
     
          if type(body) is not dict:
@@ -43,23 +41,7 @@ def include_header_body(context, headers, body):
 @when(u'I check result response')
 def result_response(context):
      try:
-         headers_temp = {}
-         headers_origin = {}
-         headers_temp.update(context.header_value)
-         protocol = context.url[:context.url.find(':')]
-         #get diferent origin urls
-         if protocol == "http" or protocol == "https":
-            domain_origin_attack = protocol + "://attackersite.com"
-         post_url_attack = context.name_domain + ".attackersite.com"
-
-         headers_origin.append(domain_origin_attack)
-         headers_origin.append(post_url_attack)
-
-         for origin_url in headers_origin:
-             headers_origin = {"origin_url", origin_url}
-             headers_temp.update(headers_origin)
-             if context.method.upper() == 'GET' or context.method.upper() == 'POST' or context.method.upper() == 'PUT':
-                context.response = rg.send_request_generic(context.url, "OPTIONS", headers_temp, context.body_value)
+         cors.cors_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain)                
 
      except Exception as e:              
         print("Exception from result_response %s", e)
