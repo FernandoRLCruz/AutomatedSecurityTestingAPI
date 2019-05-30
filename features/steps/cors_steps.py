@@ -41,7 +41,8 @@ def include_header_body(context, headers, body):
 @when(u'I check result response')
 def result_response(context):
      try:
-         cors.cors_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain)                
+        result = cors.cors_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain)
+        assert_that(result["resultado"], is_("está vulneravel para cross domain attack"))                
 
      except Exception as e:              
         print("Exception from result_response %s", e)
