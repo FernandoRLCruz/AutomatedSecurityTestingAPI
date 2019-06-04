@@ -1,0 +1,7 @@
+Revisão bibliográfica Broken Authentcation and Session Management
+
+Authentication also lies at the heart of an application’s protection against malicious attack. It is the front line of defense against unauthorized access. If an attacker can defeat those defenses, he will often gain full control of the application’s functionality and unrestricted access to the data held within it. Without
+robust authentication to rely on, none of the other core security mechanisms (such as session management and access control) can be effective.
+
+Authentication Technologies
+
