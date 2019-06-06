@@ -5,3 +5,33 @@ robust authentication to rely on, none of the other core security mechanisms (su
 
 Authentication Technologies
 
+A wide range of technologies are available to web application developers when
+implementing authentication mechanisms:
+
+->HTML forms-based authentication
+->Multifactor mechanisms, such as those combining passwords and physi-
+cal tokens
+->Client SSL certifi cates and/or smartcards
+->HTTP basic and digest authentication
+->Windows-integrated authentication using NTLM or Kerberos
+->Authentication services
+
+By far the most common authentication mechanism employed by web applications uses HTML forms to capture a username and password and submit these to the application. This mechanism accounts for well over 90% of applications you are likely to encounter on the Internet. Some web applications employ client-side SSL certifi cates or cryptographic mechanisms implemented within smartcards. Because of the overhead of adminis
+tering and distributing these items, they are typically used only in security-critical contexts where an application’s user base is small, such as web-based VPNs for remote offi ce workers.
+The HTTP-based authentication mechanisms (basic, digest, and Windows integrated) are rarely used on the Internet. Third-party authentication services such as Microsoft Passport are occasion ally encountered, but at the present time they have not been adopted on any significant scale. -> Informção está desatualizada hoje usada em larga escala Microsoft, Google e Facebook.
+
+Design Flaws in Authentication Mechanisms
+
+Vulnerable Transmission of Credentials
+If an application uses an unencrypted HTTP connection to transmit login credentials, an eavesdropper who is suitably positioned on the network can, of course, intercept them. Depending on the user’s location, potential eavesdroppers may reside:
+
+On the user’s local network
+n Within the user’s IT department
+n Within the user’s ISP
+n On the Internet backbone
+n Within the ISP hosting the application
+n Within the IT department managing the application
+
+
+
+
