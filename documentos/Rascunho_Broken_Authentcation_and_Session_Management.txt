@@ -25,12 +25,14 @@ Design Flaws in Authentication Mechanisms
 Vulnerable Transmission of Credentials
 If an application uses an unencrypted HTTP connection to transmit login credentials, an eavesdropper who is suitably positioned on the network can, of course, intercept them. Depending on the user’s location, potential eavesdroppers may reside:
 
-On the user’s local network
-n Within the user’s IT department
-n Within the user’s ISP
-n On the Internet backbone
-n Within the ISP hosting the application
-n Within the IT department managing the application
+->On the user’s local network
+->Within the user’s IT department
+->Within the user’s ISP
+->On the Internet backbone
+->Within the ISP hosting the application
+->Within the IT department managing the application
+
+
 
 
 
