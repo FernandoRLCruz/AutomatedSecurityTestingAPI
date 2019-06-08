@@ -1,5 +1,10 @@
 Revisão bibliográfica Broken Authentcation and Session Management
 
+Obs: No framework validar:
+->Se a URL está sendo enviada usando https
+->Se as credenciais estão sendo enviadas por query string parameter validar se as mesmas estão criptografadas
+->Se as credenciais do request estão em texto plano.
+
 Authentication also lies at the heart of an application’s protection against malicious attack. It is the front line of defense against unauthorized access. If an attacker can defeat those defenses, he will often gain full control of the application’s functionality and unrestricted access to the data held within it. Without
 robust authentication to rely on, none of the other core security mechanisms (such as session management and access control) can be effective.
 
@@ -20,9 +25,11 @@ By far the most common authentication mechanism employed by web applications use
 tering and distributing these items, they are typically used only in security-critical contexts where an application’s user base is small, such as web-based VPNs for remote offi ce workers.
 The HTTP-based authentication mechanisms (basic, digest, and Windows integrated) are rarely used on the Internet. Third-party authentication services such as Microsoft Passport are occasion ally encountered, but at the present time they have not been adopted on any significant scale. -> Informção está desatualizada hoje usada em larga escala Microsoft, Google e Facebook.
 
+
 Design Flaws in Authentication Mechanisms
 
 Vulnerable Transmission of Credentials
+
 If an application uses an unencrypted HTTP connection to transmit login credentials, an eavesdropper who is suitably positioned on the network can, of course, intercept them. Depending on the user’s location, potential eavesdroppers may reside:
 
 ->On the user’s local network
@@ -31,6 +38,17 @@ If an application uses an unencrypted HTTP connection to transmit login credenti
 ->On the Internet backbone
 ->Within the ISP hosting the application
 ->Within the IT department managing the application
+
+
+Even if login occurs over HTTPS, credentials may still be disclosed to unauthorized parties if the application handles them in an unsafe manner:
+
+->If credentials are transmitted as query string parameters, as opposed to in the body of a POST request, these are liable to be logged in various places, such as within the user’s browser history, within the web server logs, and within the logs of any reverse proxies employed within the hosting infrastructure. If an attacker succeeds in compromising any of these resources, he may be able to escalate privileges by capturing the user credentials stored there.
+
+->Web applications sometimes store user credentials in cookies, usually to implement poorly designed mechanisms for login, password change, “remember me,” and so on. These credentials are vulnerable to capture via attacks that compromise user cookies and, in the case of persistent cookies, by anyone who gains access to the client’s local fi lesystem. Even if
+the credentials are encrypted, an attacker still can simply replay the cookie and therefore log in as a user without actually knowing her credentials.
+
+
+
 
 
 
