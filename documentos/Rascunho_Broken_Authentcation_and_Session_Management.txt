@@ -1,5 +1,22 @@
 Revisão bibliográfica Broken Authentcation and Session Management
 
+Authentication
+
+The authentication mechanism is logically the most basic dependency in an application’s handling of user access. Authenticating a user involves establishing that the user is in fact who he claims to be. Without this facility, the application would need to treat all users as anonymous — the lowest possible level of trust.
+The majority of today’s web applications employ the conventional authentication model, in which the user submits a username and password, which the application checks for validity. Figure 2-1 shows a typical login function. In security-critical applications such as those used by online banks, this basic model is usually supplemented by additional credentials and a multistage login process. When security requirements are higher still, other authentication models may be used, based on client certifi cates, smartcards, or challenge-response tokens. In addition to the core login process, authentication mechanisms often
+employ a range of other supporting functionality, such as self-registration, account recovery, and a password change facility.
+Despite their superfi cial simplicity, authentication mechanisms suffer from a wide range of defects in both design and implementation. Common problems may enable an attacker to identify other users’ usernames, guess their passwords, or bypass the login function by exploiting defects in its logic. When you are attacking a web application, you should invest a signifi cant amount of attention to the various authentication-related functions it contains. Surprisingly frequently, defects in this functionality enable you to gain unauthorized access to sensitive data and functionality.
+
+Session Management
+
+The next logical task in the process of handling user access is to manage the authenticated user’s session. After successfully logging in to the application, the user accesses various pages and functions, making a series of HTTP requests from his browser. At the same time, the application receives countless other requests from different users, some of whom are authenticated and some of whom are anonymous. To enforce effective access control, the application needs a way to identify and process the series of requests that originate from each unique user. Virtually all web applications meet this requirement by creating a session for
+each user and issuing the user a token that identifi es the session. The session itself is a set of data structures held on the server that track the state of the user’s interaction with the application. The token is a unique string that the application maps to the session. When a user receives a token, the browser automatically submits it back to the server in each subsequent HTTP request, enabling the application to associate the request with that user. HTTP cookies are the standard method for transmitting session tokens, although many applications use hidden form fi elds or the URL query string for this purpose. If a user does not make a request for a certain amount of time, the session is ideally expired. 
+In terms of attack surface, the session management mechanism is highly dependent on the security of its tokens. The majority of attacks against it seek to compromise the tokens issued to other users. If this is possible, an attacker can masquerade as the victim user and use the application just as if he had actually authenticated as that user. The principal areas of vulnerability arise from defects in how tokens are generated, enabling an attacker to guess the tokens issued to other users, and defects in how tokens are subsequently handled, enabling an attacker to capture other users’ tokens. A small number of applications dispense with the need for session tokens by using other means of reidentifying users across multiple requests. If HTTP’s built-in authentication mechanism is used, the browser automatically resubmits the user’s credentials with each request, enabling the application to identify the user directly from these. In other cases, the application stores the state information on the client side rather than the server, usually in encrypted form to prevent tampering.
+
+
+
+
+
 Obs: No framework validar:
 ->Se a URL está sendo enviada usando https
 ->Se as credenciais estão sendo enviadas por query string parameter validar se as mesmas estão criptografadas
