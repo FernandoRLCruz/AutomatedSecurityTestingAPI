@@ -16,6 +16,4 @@
 pip install -r requirements.txt
 ```
 
-HTML file
 
-Open html file in <b>allure-html\index.html</b> with Firefox or Edge
