@@ -45,7 +45,7 @@ The HTTP-based authentication mechanisms (basic, digest, and Windows integrated)
 
 Design Flaws in Authentication Mechanisms
 
-Vulnerable Transmission of Credentials
+-Vulnerable Transmission of Credentials
 
 If an application uses an unencrypted HTTP connection to transmit login credentials, an eavesdropper who is suitably positioned on the network can, of course, intercept them. Depending on the user’s location, potential eavesdroppers may reside:
 
@@ -63,6 +63,21 @@ Even if login occurs over HTTPS, credentials may still be disclosed to unauthori
 
 ->Web applications sometimes store user credentials in cookies, usually to implement poorly designed mechanisms for login, password change, “remember me,” and so on. These credentials are vulnerable to capture via attacks that compromise user cookies and, in the case of persistent cookies, by anyone who gains access to the client’s local fi lesystem. Even if
 the credentials are encrypted, an attacker still can simply replay the cookie and therefore log in as a user without actually knowing her credentials.
+
+
+-Password Change Functionality
+
+Although it is a necessary part of an effective authentication mechanism, password change functionality is often vulnerable by design. Vulnerabilities that are deliberately avoided in the main login function often reappear in the password change function. Many web applications’ password change functions are accessible without authentication and do the following:
+  
+  -> Provide a verbose error message indicating whether the requested username is valid.
+  -> Allow unrestricted guesses of the “existing password” field.
+  -> Check whether the “new password” and “confi rm new password” fields have the same value only after validating the existing password, thereby allowing an attack to succeed in discovering the existing password noninvasively.
+  
+A typical password change function includes a relatively large logical decision tree. The application needs to identify the user, validate the supplied existing password, integrate with any account lockout defenses, compare the supplied new passwords with each other and against password quality rules, and feed back any error conditions to the user in a suitable way. Because of this, password change functions often contain subtle logic fl aws that can be exploited to subvert the entire mechanism.  
+
+
+
+
 
 
 
