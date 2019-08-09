@@ -18,7 +18,7 @@ from urllib.parse import urlparse
 @given(u'I verify api "{url}" using for following methods "{method}"')
 def get_url_method_data(context, url, method):
     nameTemp = urlparse(context.base_url + url)
-    context.url = url
+    context.url = context.base_url + url
     context.name_domain = nameTemp.hostname
     context.method = method
 

@@ -1,0 +1,13 @@
+Broken Authentication attack -- @1.1 Authentication
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
+Cross Domain attack with same origin policy -- @1.1 cors
