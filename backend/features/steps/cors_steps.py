@@ -17,15 +17,15 @@ from urllib.parse import urlparse
 
 @given(u'I verify api "{url}" using for following methods "{method}"')
 def get_url_method_data(context, url, method):
-    nameTemp = urlparse(url)
-    context.url = url
+    nameTemp = urlparse(context.base_url + url)
+    context.url = context.base_url + url
     context.name_domain = nameTemp.hostname
     context.method = method
 
 @when(u'I include the "{headers}" and "{body}" to request')
 def include_header_body(context, headers, body):
     try:
-         if headers is None or headers == ' ':
+         if headers is "blank":
             headers = {'Content-Type' : 'application/json'}
 
          if type(headers) is not dict:
