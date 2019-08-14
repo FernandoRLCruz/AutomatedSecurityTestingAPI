@@ -1,0 +1,4 @@
+Secure Headers Missing
+
+-HTTP Strict Transport Security (HSTS)
+  
