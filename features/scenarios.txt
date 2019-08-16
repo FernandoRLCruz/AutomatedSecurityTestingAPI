@@ -1,0 +1,1 @@
+Cross Domain attack with same origin policy -- @1.1 cors

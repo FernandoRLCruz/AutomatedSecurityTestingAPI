@@ -5,7 +5,7 @@ Feature: This feature check if the API is vulnerable to Cross domain attack.
        Scenario Outline: Cross Domain attack with same origin policy
         Given I verify api "<url>" using for following methods "<method>"
         When  I include the "<headers>" and "<body>" to request 
-        And   I check result response
+        And   I check result cors scan response
         #Then  I display report with results 
     
         Examples: cors
