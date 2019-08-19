@@ -1,7 +1,22 @@
 Secure Headers Missing
 
 -HTTP Strict Transport Security (HSTS):
-  HTTP Strict Transport Security (HSTS) is a web security policy mechanism which helps to protect websites against protocol downgrade attacks and cookie hijacking. It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol. HSTS is an IETF standards track protocol and is specified in RFC 6797. A server implements an HSTS policy by supplying a header (Strict-Transport-Security) over an HTTPS connection (HSTS headers over HTTP are ignored). 
+HTTP Strict Transport Security(HSTS) é um mecanismo que ajuda a proteger sites contra ataques de downgrade de protocolo e sequestro de cookie, permite que servidores web informem que web browser(e outros agentes compativeis) possam interagir com segurança usando conexões HTTPS seguras, e não usado via protocolo HTTP inseguro. 
+Um servidor implementa uma política de HSTS fornecendo um cabeçalho (Strict-Transport-Security) através de uma conexão HTTPS.
+
+Values:
+-max-age=SECONDS (O tempo, em segundos, que o navegador deve lembrar que este site só deve ser acessado usando HTTPS.)
+-includeSubDomains (Se este parâmetro opcional for especificado, esta regra também será aplicada a todos os subdomínios do site.)
   
- HTTP Strict Transport Security(HSTS) é um mecanismo que ajuda a proteger sites contra ataques de downgrade de protocolo e sequestro de cookie, permite que servidores web informem que web browser(e outros agentes compativeis) possam interagir com segurança usando conexões HTTPS seguras.
-  
+Exemplo:
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+
+-Public Key Pinning Extension for HTTP (HPKP):
+É um mecanismo de segurança permite que sites HTTPS resistam a falsificação de identidade por invasores usando certificados incorretos ou fraudulentos.
+
+
+HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).
+
+The HTTPS web server serves a list of public key hashes, and on subsequent connections clients expect that server to use one or more of those public keys in its certificate chain. Deploying HPKP safely will require operational and organizational maturity due to the risk that hosts may make themselves unavailable by pinning to a set of public key hashes that becomes invalid. With care, host operators can greatly reduce the risk of man-in-the-middle (MITM) attacks and other false authentication problems for their users without incurring undue risk.
+
+Before implement HPKP please read this https://www.chromestatus.com/feature/5903385005916160. 
