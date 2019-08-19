@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "console": "integratedTerminal",
-            "cwd": "/home/ret4o/Documentos/AutomatedSecurityTestingAPI",
+            "cwd": "/home/ret4o/Documentos/AutomatedSecurityTestingAPI/backend",
             "args": ["-m", "behave", "--no-capture", "--no-skipped", "--tags=@wip"]
         }
     ]

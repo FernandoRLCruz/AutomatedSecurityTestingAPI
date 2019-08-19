@@ -9,5 +9,5 @@ Feature: This feature check if the API is vulnerable to Cross domain attack.
         #Then  I display report with results 
     
         Examples: cors
-        | url                           | method | headers                                                              | body                                          |
-        | https://reqres.in/api/users/2 | POST   |  {"Content-type" : "application/json", "access_token" : "X123B12DF"} | {"first_name":"flipkart","last_name":"appsec"}|     
+        | url      | method | headers                                                              | body                                          |
+        | /users/2 | POST   |  {"Content-type" : "application/json", "access_token" : "X123B12DF"} | {"first_name":"flipkart","last_name":"appsec"}|     
