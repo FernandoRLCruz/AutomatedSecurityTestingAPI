@@ -30,5 +30,5 @@ Esta opção permite que o response header melhora a proteção de aplicativos d
 Values:
 -deny (Nenhuma renderização dentro de um quadro)
 -sameorigin (Nenhuma renderização se a incompatibilidade de origem.)
--
+-allow-from: DOMAIN (Permite renderizar se enquadrado por quadro carregado de DOMAIN.)
 
