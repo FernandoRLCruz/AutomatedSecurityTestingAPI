@@ -32,3 +32,8 @@ Values:
 -sameorigin (Nenhuma renderização se a incompatibilidade de origem.)
 -allow-from: DOMAIN (Permite renderizar se enquadrado por quadro carregado de DOMAIN.)
 
+Exemplo:
+X-Frame-Options: deny
+
+
+
