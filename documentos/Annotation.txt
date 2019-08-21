@@ -1,6 +1,6 @@
 Secure Headers Missing
 
--HTTP Strict Transport Security (HSTS):
+->HTTP Strict Transport Security (HSTS):
 HTTP Strict Transport Security(HSTS) é um mecanismo que ajuda a proteger sites contra ataques de downgrade de protocolo e sequestro de cookie, permite que servidores web informem que web browser(e outros agentes compativeis) possam interagir com segurança usando conexões HTTPS seguras, e não usado via protocolo HTTP inseguro. 
 Um servidor implementa uma política de HSTS fornecendo um cabeçalho (Strict-Transport-Security) através de uma conexão HTTPS.
 
@@ -11,12 +11,24 @@ Values:
 Exemplo:
 Strict-Transport-Security: max-age=31536000 ; includeSubDomains
 
--Public Key Pinning Extension for HTTP (HPKP):
-É um mecanismo de segurança permite que sites HTTPS resistam a falsificação de identidade por invasores usando certificados incorretos ou fraudulentos.
+->Public Key Pinning Extension for HTTP (HPKP):
+É um mecanismo de segurança permite que sites HTTPS resistam a falsificação de identidade por invasores usando certificados incorretos ou fraudulentos. O servidor HTTPS disponibiliza uma lista de chaves publicas hashes e consequentemente conecta clientes esperando que o servidor use uma ou mais dessas chaves publicas em sua cadeia de certificados.
+Implantando HPKP com segurança exigirá maturidade operacional e organizacional, devido ao risco de que os hosts se tornem indisponíveis fixando a um conjunto de hashes de chave pública que se tornam inválidos. Com cuidado, as operadoras de host podem reduzir muito o risco de ataques MITM (man-in-the-middle) e outros problemas de autenticação falsa para seus usuários, sem enfrentar riscos indevidos.
 
+Values:
+-pin-sha256="<sha256>" (A cadeia entre aspas é a impressão digital de Informações de Chave Pública do Assunto (SPKI) codificada em Base64. É possível especificar vários pinos para diferentes chaves públicas. Alguns navegadores podem permitir outros algoritmos de hashing do que o SHA-256 no futuro.)
+-max-age=SECONDS (O tempo, em segundos, que o navegador deve lembrar que este site só deve ser acessado usando uma das chaves fixadas.)
+-includeSubDomains (Se este parâmetro opcional for especificado, esta regra também será aplicada a todos os subdomínios do site.)
+-report-uri="<URL>" (Se esse parâmetro opcional for especificado, as falhas de validação de pinos serão relatadas para a URL especificada.)
 
-HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).
+Exemplo:
+Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; report-uri="http://example.com/pkp-report"; max-age=10000; includeSubDomains
 
-The HTTPS web server serves a list of public key hashes, and on subsequent connections clients expect that server to use one or more of those public keys in its certificate chain. Deploying HPKP safely will require operational and organizational maturity due to the risk that hosts may make themselves unavailable by pinning to a set of public key hashes that becomes invalid. With care, host operators can greatly reduce the risk of man-in-the-middle (MITM) attacks and other false authentication problems for their users without incurring undue risk.
+->X-Frame-Options:
+Esta opção permite que o response header melhora a proteção de aplicativos da Web contra o Clickjacking. Ele declara uma política de comunicação do host para o navegador do cliente informando se o navegador não deve exibir o conteúdo transmitido em quadros de outras páginas da Web.
 
-Before implement HPKP please read this https://www.chromestatus.com/feature/5903385005916160. 
+Values:
+-deny (Nenhuma renderização dentro de um quadro)
+-sameorigin (Nenhuma renderização se a incompatibilidade de origem.)
+-
+
