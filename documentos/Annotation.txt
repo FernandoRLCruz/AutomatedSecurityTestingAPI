@@ -42,7 +42,10 @@ Values:
 -0 (Filtro desabilitado)
 -1 (Filtro habilitado. Se um ataque de Cross-site scripting (XSS) entre sites for detectado, a fim de interromper o ataque, o navegador limpará a página.)
 -1; mode=block (Filtro ativado. Em vez de limpar a página, quando um ataque XSS é detectado, o navegador impedirá a renderização da página.)
--1; report=http://[YOURDOMAIN]/your_report_URI (Filter enabled. The browser will sanitize the page and report the violation. This is a Chromium function utilizing CSP violation reports to send details to a URI of your choice.)
+-1; report=http://[YOURDOMAIN]/your_report_URI (Filtro ativado. O navegador irá limpar a página e informar a violação. Essa é uma função do Chromium que utiliza relatórios de violação de CSP para enviar detalhes a um URI de sua escolha.)
+
+Exemplo:
+X-XSS-Protection: 1; mode=block
 
 
 
