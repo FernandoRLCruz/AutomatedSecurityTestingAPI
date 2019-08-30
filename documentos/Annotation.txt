@@ -47,6 +47,29 @@ Values:
 Exemplo:
 X-XSS-Protection: 1; mode=block
 
+->X-Content-Type-Options
+Esta opção de configuração de cabeçalho impedirá que o navegador interprete os arquivos como algo que não seja declarado pelo tipo de conteúdo nos cabeçalhos HTTP.
+
+Values:
+-nosniff (Impedirá que o navegador detecte uma resposta MIME para longe do tipo de conteúdo declarado.)
+
+Exemplo:
+X-Content-Type-Options: nosniff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
