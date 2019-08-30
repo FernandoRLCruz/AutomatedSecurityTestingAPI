@@ -4,57 +4,22 @@ Secure Headers Missing
 HTTP Strict Transport Security(HSTS) é um mecanismo que ajuda a proteger sites contra ataques de downgrade de protocolo e sequestro de cookie, permite que servidores web informem que web browser(e outros agentes compativeis) possam interagir com segurança usando conexões HTTPS seguras, e não usado via protocolo HTTP inseguro. 
 Um servidor implementa uma política de HSTS fornecendo um cabeçalho (Strict-Transport-Security) através de uma conexão HTTPS.
 
-Values:
--max-age=SECONDS (O tempo, em segundos, que o navegador deve lembrar que este site só deve ser acessado usando HTTPS.)
--includeSubDomains (Se este parâmetro opcional for especificado, esta regra também será aplicada a todos os subdomínios do site.)
-  
-Exemplo:
-Strict-Transport-Security: max-age=31536000 ; includeSubDomains
-
-->Public Key Pinning Extension for HTTP (HPKP):
-É um mecanismo de segurança permite que sites HTTPS resistam a falsificação de identidade por invasores usando certificados incorretos ou fraudulentos. O servidor HTTPS disponibiliza uma lista de chaves publicas hashes e consequentemente conecta clientes esperando que o servidor use uma ou mais dessas chaves publicas em sua cadeia de certificados.
-Implantando HPKP com segurança exigirá maturidade operacional e organizacional, devido ao risco de que os hosts se tornem indisponíveis fixando a um conjunto de hashes de chave pública que se tornam inválidos. Com cuidado, as operadoras de host podem reduzir muito o risco de ataques MITM (man-in-the-middle) e outros problemas de autenticação falsa para seus usuários, sem enfrentar riscos indevidos.
-
-Values:
--pin-sha256="<sha256>" (A cadeia entre aspas é a impressão digital de Informações de Chave Pública do Assunto (SPKI) codificada em Base64. É possível especificar vários pinos para diferentes chaves públicas. Alguns navegadores podem permitir outros algoritmos de hashing do que o SHA-256 no futuro.)
--max-age=SECONDS (O tempo, em segundos, que o navegador deve lembrar que este site só deve ser acessado usando uma das chaves fixadas.)
--includeSubDomains (Se este parâmetro opcional for especificado, esta regra também será aplicada a todos os subdomínios do site.)
--report-uri="<URL>" (Se esse parâmetro opcional for especificado, as falhas de validação de pinos serão relatadas para a URL especificada.)
-
-Exemplo:
-Public-Key-Pins: pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM="; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="; report-uri="http://example.com/pkp-report"; max-age=10000; includeSubDomains
-
 ->X-Frame-Options:
 Esta opção permite que o response header melhora a proteção de aplicativos da Web contra o Clickjacking. Ele declara uma política de comunicação do host para o navegador do cliente informando se o navegador não deve exibir o conteúdo transmitido em quadros de outras páginas da Web.
-
-Values:
--deny (Nenhuma renderização dentro de um quadro)
--sameorigin (Nenhuma renderização se a incompatibilidade de origem.)
--allow-from: DOMAIN (Permite renderizar se enquadrado por quadro carregado de DOMAIN.)
-
-Exemplo:
-X-Frame-Options: deny
 
 ->X-XSS-Protection:
 Esta opção habilita o filtro de Cross-site scripting (XSS) no browser.
 
 Values:
 -0 (Filtro desabilitado)
--1 (Filtro habilitado. Se um ataque de Cross-site scripting (XSS) entre sites for detectado, a fim de interromper o ataque, o navegador limpará a página.)
 -1; mode=block (Filtro ativado. Em vez de limpar a página, quando um ataque XSS é detectado, o navegador impedirá a renderização da página.)
--1; report=http://[YOURDOMAIN]/your_report_URI (Filtro ativado. O navegador irá limpar a página e informar a violação. Essa é uma função do Chromium que utiliza relatórios de violação de CSP para enviar detalhes a um URI de sua escolha.)
-
-Exemplo:
-X-XSS-Protection: 1; mode=block
 
 ->X-Content-Type-Options
 Esta opção de configuração de cabeçalho impedirá que o navegador interprete os arquivos como algo que não seja declarado pelo tipo de conteúdo nos cabeçalhos HTTP.
 
-Values:
--nosniff (Impedirá que o navegador detecte uma resposta MIME para longe do tipo de conteúdo declarado.)
 
-Exemplo:
-X-Content-Type-Options: nosniff
+->Content-Security-Policy
+A Content Security Policy (CSP) implementa políticas que validam a renderização da página e protegem contra ataques de injeção de conteúdo como Cross-Site Scripting (XSS). Requer um ajuste cuidadoso e uma definição precisa da política, para evitar que aplicações tenham seu funcionamento prejudicado, impacto significativo na maneira como os navegadores renderizam as páginas (por exemplo, o JavaScript embutido é desativado por padrão e deve ser explicitamente permitido na política). A principal característica que pode ocasionar a quebra é o bloqueio de javascript inline, situação onde o javascript é inserido na página com tag <script>.
 
 
 
