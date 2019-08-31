@@ -22,6 +22,10 @@ Esta opção de configuração de cabeçalho impedirá que o navegador interpret
 A Content Security Policy (CSP) implementa políticas que validam a renderização da página e protegem contra ataques de injeção de conteúdo como Cross-Site Scripting (XSS). Requer um ajuste cuidadoso e uma definição precisa da política, para evitar que aplicações tenham seu funcionamento prejudicado, impacto significativo na maneira como os navegadores renderizam as páginas (por exemplo, o JavaScript embutido é desativado por padrão e deve ser explicitamente permitido na política). A principal característica que pode ocasionar a quebra é o bloqueio de javascript inline, situação onde o javascript é inserido na página com tag <script>.
 
 
+->Cookies Secure
+HttpOnly é uma configuração adicional incluído no cabeçalho de resposta HTTP Set-Cookie. O uso do HttpOnly ao gerar um cookie ajuda a reduzir o risco de o script do lado do cliente acessar o cookie protegido. Como resultado, mesmo se existir uma falha de script (XSS) e um usuário acessar acidentalmente um link que explora essa falha.
+
+
 
 
 
