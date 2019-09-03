@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 
 
 
-@when(u'I check result cors scan response')
+@when(u'I check result cors response')
 def result_response(context):
      try:
         result = cors.cors_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain)

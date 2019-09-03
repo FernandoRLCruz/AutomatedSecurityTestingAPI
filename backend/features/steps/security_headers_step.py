@@ -15,14 +15,16 @@ from urllib.parse import urlparse
 
 
 
-@when(u'I check result security headers scan response')
+@when(u'I check result security headers response')
 def result_response(context):
-     try:
-        result = shc.security_headers_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain)
-        for item in result:
-               assert_that(result[item]["resultado"], contains_string("está vulneravel para cross domain attack"))                
+    result = []
+    try:
+        for row in context.table:
+            result.append(shc.security_headers_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain, row["attack_method"]))
+            for item in result:
+                assert_that(result[item]["resultado"], contains_string("está vulneravel para cross domain attack"))                
 
-     except Exception as e:              
+    except Exception as e:              
         print("Exception from result_response %s", e)
     
 
