@@ -21,8 +21,9 @@ def result_response(context):
     try:
         for row in context.table:
             result.append(shc.security_headers_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain, row["attack_method"]))
-            for item in result:
-                assert_that(result[item]["resultado"], contains_string("está vulneravel para cross domain attack"))                
+        for item in result:
+            if item != None:
+                assert_that(item["alert"])                
 
     except Exception as e:              
         print("Exception from result_response %s", e)

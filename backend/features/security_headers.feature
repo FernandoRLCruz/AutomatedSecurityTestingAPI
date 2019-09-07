@@ -5,7 +5,7 @@ Feature: This feature check if the API is vulnerable to Security Headers.
        Scenario Outline: Security Headers attack
         Given I verify api "<url>" using for following methods "<method>"
         When  I include the "<headers>" and "<body>" to request 
-        And   I check result <attack> response
+        And   I check result security headers response
             | attack_method                | parameters                             |
             | csp_check                    | Content-Security-Policy                | 
             | xss_protection_check         | X-XSS-Protection, 0, 1;mode=block      |
