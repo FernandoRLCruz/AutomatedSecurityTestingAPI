@@ -23,8 +23,9 @@ def get_url_method_data(context, url, method):
 @when(u'I include the "{headers}" and "{body}" to request')
 def include_header_body(context, headers, body):
     try:
-         if headers is None or headers == ' ':
+         if headers == "None":
             headers = {'Content-Type' : 'application/json'}
+            context.header_value = headers
 
          if type(headers) is not dict:
             context.header_value = json.loads(headers)         
