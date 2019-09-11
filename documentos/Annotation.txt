@@ -28,6 +28,11 @@ HttpOnly é uma configuração adicional incluído no cabeçalho de resposta HTT
 ->Version Desclosure
 Aplicações que utilizam um servidor Web, geralmente mostra que tipo de servidor é, seu número de versão e o sistema operacional. Essas informações estão disponíveis nos campos do cabeçalho e podem ser adquiridas usando um navegador da Web para fazer uma solicitação simples para qualquer aplicativo da Web, freqüentemente é ignorado pela maioria das pessoas, com exceção dos maliciosos. Os invasores podem realizar a captura de informações sobre versão e sistema operacional usando ferramentas TCP simples, como telnet ou netcat. Em seguida, eles lançam ataques direcionados contra seu servidor e versão da web. Além disso, se se sabe que uma versão específica de um servidor da Web é vulnerável a uma exploração específica, o invasor precisa apenas usá-la como parte de seu ataque ao servidor da Web de destino.
 
+Values:
+-Server: Este parametro do header possui informação sobre versão e tipo de servidor.
+-X-Powered-By: Este parametro do header contém informações sobre o framework e linguagem usada no servidor.
+-X-AspNet-Version: Este parametro do header contém informações sobre versão e tipo de servidor ASP .NET framework.
+
 
 
 
