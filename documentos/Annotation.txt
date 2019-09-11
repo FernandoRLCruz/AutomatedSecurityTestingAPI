@@ -23,7 +23,8 @@ A Content Security Policy (CSP) implementa políticas que validam a renderizaç�
 
 
 ->Cookies Secure
-HttpOnly é uma configuração adicional incluído no cabeçalho de resposta HTTP Set-Cookie. O uso do HttpOnly ao gerar um cookie ajuda a reduzir o risco de o script do lado do cliente acessar o cookie protegido. Como resultado, mesmo se existir uma falha de script (XSS) e um usuário acessar acidentalmente um link que explora essa falha.
+HttpOnly é uma configuração adicional incluído no cabeçalho de resposta HTTP Set-Cookie. O uso do HttpOnly ao gerar um cookie ajuda a reduzir o risco de o script do lado do cliente acessar o cookie protegido.Cookies com o parâmetro HTTP Only dificultam bastante o roubo de sessão através de XSS pois o javascript não consegue ler o conteúdo destes cookies.
+  
 
 
 
