@@ -24,8 +24,9 @@ A Content Security Policy (CSP) implementa políticas que validam a renderizaç�
 
 ->Cookies Secure
 HttpOnly é uma configuração adicional incluído no cabeçalho de resposta HTTP Set-Cookie. O uso do HttpOnly ao gerar um cookie ajuda a reduzir o risco de o script do lado do cliente acessar o cookie protegido.Cookies com o parâmetro HTTP Only dificultam bastante o roubo de sessão através de XSS pois o javascript não consegue ler o conteúdo destes cookies.
-  
 
+->Version Desclosure
+Aplicações que utilizam um servidor Web, geralmente mostra que tipo de servidor é, seu número de versão e o sistema operacional. Essas informações estão disponíveis nos campos do cabeçalho e podem ser adquiridas usando um navegador da Web para fazer uma solicitação simples para qualquer aplicativo da Web, freqüentemente é ignorado pela maioria das pessoas, com exceção dos maliciosos. Os invasores podem realizar a captura de informações sobre versão e sistema operacional usando ferramentas TCP simples, como telnet ou netcat. Em seguida, eles lançam ataques direcionados contra seu servidor e versão da web. Além disso, se se sabe que uma versão específica de um servidor da Web é vulnerável a uma exploração específica, o invasor precisa apenas usá-la como parte de seu ataque ao servidor da Web de destino.
 
 
 
