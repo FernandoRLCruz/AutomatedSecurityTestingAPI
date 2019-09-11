@@ -1,5 +1,46 @@
 Secure Headers Missing
 
--HTTP Strict Transport Security (HSTS):
-  HTTP Strict Transport Security (HSTS) is a web security policy mechanism which helps to protect websites against protocol downgrade attacks and cookie hijacking. It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol. HSTS is an IETF standards track protocol and is specified in RFC 6797. A server implements an HSTS policy by supplying a header (Strict-Transport-Security) over an HTTPS connection (HSTS headers over HTTP are ignored). 
+->HTTP Strict Transport Security (HSTS):
+HTTP Strict Transport Security(HSTS) é um mecanismo que ajuda a proteger sites contra ataques de downgrade de protocolo e sequestro de cookie, permite que servidores web informem que web browser(e outros agentes compativeis) possam interagir com segurança usando conexões HTTPS seguras, e não usado via protocolo HTTP inseguro. 
+Um servidor implementa uma política de HSTS fornecendo um cabeçalho (Strict-Transport-Security) através de uma conexão HTTPS.
+
+->X-Frame-Options:
+Esta opção permite que o response header melhora a proteção de aplicativos da Web contra o Clickjacking. Ele declara uma política de comunicação do host para o navegador do cliente informando se o navegador não deve exibir o conteúdo transmitido em quadros de outras páginas da Web.
+
+->X-XSS-Protection:
+Esta opção habilita o filtro de Cross-site scripting (XSS) no browser.
+
+Values:
+-0 (Filtro desabilitado)
+-1; mode=block (Filtro ativado. Em vez de limpar a página, quando um ataque XSS é detectado, o navegador impedirá a renderização da página.)
+
+->X-Content-Type-Options
+Esta opção de configuração de cabeçalho impedirá que o navegador interprete os arquivos como algo que não seja declarado pelo tipo de conteúdo nos cabeçalhos HTTP.
+
+
+->Content-Security-Policy
+A Content Security Policy (CSP) implementa políticas que validam a renderização da página e protegem contra ataques de injeção de conteúdo como Cross-Site Scripting (XSS). Requer um ajuste cuidadoso e uma definição precisa da política, para evitar que aplicações tenham seu funcionamento prejudicado, impacto significativo na maneira como os navegadores renderizam as páginas (por exemplo, o JavaScript embutido é desativado por padrão e deve ser explicitamente permitido na política). A principal característica que pode ocasionar a quebra é o bloqueio de javascript inline, situação onde o javascript é inserido na página com tag <script>.
+
+
+->Cookies Secure
+HttpOnly é uma configuração adicional incluído no cabeçalho de resposta HTTP Set-Cookie. O uso do HttpOnly ao gerar um cookie ajuda a reduzir o risco de o script do lado do cliente acessar o cookie protegido.Cookies com o parâmetro HTTP Only dificultam bastante o roubo de sessão através de XSS pois o javascript não consegue ler o conteúdo destes cookies.
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
