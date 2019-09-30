@@ -3,7 +3,7 @@ import sys
 import json
 import requests
 import ast
-import cors_core as cors
+import security_headers_core as shc
 PARENT_PATH = os.path.abspath("..")
 if PARENT_PATH not in sys.path:
     sys.path.insert(0, PARENT_PATH)
@@ -15,14 +15,17 @@ from urllib.parse import urlparse
 
 
 
-@when(u'I check result cors response')
+@when(u'I check result security headers response')
 def result_response(context):
-     try:
-        result = cors.cors_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain)
+    result = []
+    try:
+        for row in context.table:
+            result.append(shc.security_headers_initial(context.url, context.method, context.header_value, context.body_value, context.name_domain, row["attack_method"]))
         for item in result:
-               assert_that(result[item]["resultado"], contains_string("está vulneravel para cross domain attack"))                
+            if item != None:
+                assert_that(item["alert"])                
 
-     except Exception as e:              
+    except Exception as e:              
         print("Exception from result_response %s", e)
     
 
