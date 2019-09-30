@@ -1,52 +1,8 @@
-Secure Headers Missing
+Injeção de SQL é uma técnica de injeção de código, usada para atacar aplicativos orientados a dados, nos quais instruções SQL nefastas são inseridas em um campo de entrada para execução (por exemplo, para despejar o conteúdo do banco de dados para o invasor). [1] A injeção SQL deve explorar uma vulnerabilidade de segurança no software de um aplicativo, por exemplo, quando a entrada do usuário é filtrada incorretamente para caracteres de escape de cadeia literal incorporados em instruções SQL ou a entrada do usuário não é fortemente tipificada e executada inesperadamente. A injeção de SQL é conhecida principalmente como um vetor de ataque para sites, mas pode ser usada para atacar qualquer tipo de banco de dados SQL.
 
-->HTTP Strict Transport Security (HSTS):
-HTTP Strict Transport Security(HSTS) é um mecanismo que ajuda a proteger sites contra ataques de downgrade de protocolo e sequestro de cookie, permite que servidores web informem que web browser(e outros agentes compativeis) possam interagir com segurança usando conexões HTTPS seguras, e não usado via protocolo HTTP inseguro. 
-Um servidor implementa uma política de HSTS fornecendo um cabeçalho (Strict-Transport-Security) através de uma conexão HTTPS.
+A gravidade dos ataques de injeção SQL é limitada pela habilidade e imaginação do invasor e, em menor grau, pela defesa em contramedidas profundas, como conexões de baixo privilégio com o servidor de banco de dados e assim por diante. Em geral, considere a injeção de SQL uma severidade de alto impacto.
 
-->X-Frame-Options:
-Esta opção permite que o response header melhora a proteção de aplicativos da Web contra o Clickjacking. Ele declara uma política de comunicação do host para o navegador do cliente informando se o navegador não deve exibir o conteúdo transmitido em quadros de outras páginas da Web.
+A falha é facilmente detectada e facilmente explorada e, como tal, qualquer site ou pacote de software com uma base mínima de usuários provavelmente estará sujeito a uma tentativa de ataque desse tipo. 
 
-->X-XSS-Protection:
-Esta opção habilita o filtro de Cross-site scripting (XSS) no browser.
-
-Values:
--0 (Filtro desabilitado)
--1; mode=block (Filtro ativado. Em vez de limpar a página, quando um ataque XSS é detectado, o navegador impedirá a renderização da página.)
-
-->X-Content-Type-Options
-Esta opção de configuração de cabeçalho impedirá que o navegador interprete os arquivos como algo que não seja declarado pelo tipo de conteúdo nos cabeçalhos HTTP.
-
-
-->Content-Security-Policy
-A Content Security Policy (CSP) implementa políticas que validam a renderização da página e protegem contra ataques de injeção de conteúdo como Cross-Site Scripting (XSS). Requer um ajuste cuidadoso e uma definição precisa da política, para evitar que aplicações tenham seu funcionamento prejudicado, impacto significativo na maneira como os navegadores renderizam as páginas (por exemplo, o JavaScript embutido é desativado por padrão e deve ser explicitamente permitido na política). A principal característica que pode ocasionar a quebra é o bloqueio de javascript inline, situação onde o javascript é inserido na página com tag <script>.
-
-
-->Cookies Secure
-HttpOnly é uma configuração adicional incluído no cabeçalho de resposta HTTP Set-Cookie. O uso do HttpOnly ao gerar um cookie ajuda a reduzir o risco de o script do lado do cliente acessar o cookie protegido.Cookies com o parâmetro HTTP Only dificultam bastante o roubo de sessão através de XSS pois o javascript não consegue ler o conteúdo destes cookies.
-
-->Version Desclosure
-Aplicações que utilizam um servidor Web, geralmente mostra que tipo de servidor é, seu número de versão e o sistema operacional. Essas informações estão disponíveis nos campos do cabeçalho e podem ser adquiridas usando um navegador da Web para fazer uma solicitação simples para qualquer aplicativo da Web, freqüentemente é ignorado pela maioria das pessoas, com exceção dos maliciosos. Os invasores podem realizar a captura de informações sobre versão e sistema operacional usando ferramentas TCP simples, como telnet ou netcat. Em seguida, eles lançam ataques direcionados contra seu servidor e versão da web. Além disso, se se sabe que uma versão específica de um servidor da Web é vulnerável a uma exploração específica, o invasor precisa apenas usá-la como parte de seu ataque ao servidor da Web de destino.
-
-Values:
--Server: Este parametro do header possui informação sobre versão e tipo de servidor.
--X-Powered-By: Este parametro do header contém informações sobre o framework e linguagem usada no servidor.
--X-AspNet-Version: Este parametro do header contém informações sobre versão e tipo de servidor ASP .NET framework.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Falhas de injeção, como SQL, NoSQL, Injeção de comando, etc. ocorrem quando dados não confiáveis são enviados ao interpretador SQL como parte de um comando ou consulta. Os dados maliciosos do invasor podem induzir o intérpretador SQL a executar comandos não intencionais ou acessar dados sem a devida autorização.
 
