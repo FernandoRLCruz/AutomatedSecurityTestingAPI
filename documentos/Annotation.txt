@@ -6,3 +6,15 @@ A falha é facilmente detectada e facilmente explorada e, como tal, qualquer sit
 
 Falhas de injeção, como SQL, NoSQL, Injeção de comando, etc. ocorrem quando dados não confiáveis são enviados ao interpretador SQL como parte de um comando ou consulta. Os dados maliciosos do invasor podem induzir o intérpretador SQL a executar comandos não intencionais ou acessar dados sem a devida autorização.
 
+Entretanto, se um desenvolvedor deixar de sanitizar os dados de entrada do usuário ao interagir com o banco de dados, você poderá descobrir que poderá realizar um ataque de injeção de SQL para manipular as queries enviadas a ele.
+
+Ataques bem-sucedidos de injeção de SQL podem ler dados do banco de dados, modificá-los, desativar ou destruir o banco de dados e, em alguns casos, até mesmo executar comandos no sistema operacional subjacente (o que pode ser especialmente eficaz porque os servidores de banco de dados, com frequência, são executados como usuários privilegiados).
+
+
+Ex:. Dados de entrada query:
+
+1- SELECT id FROM users WHERE username='$username' AND password='$password'
+2- SELECT username FROM users WHERE username='' or '1'='1' AND password='' or '1'='1'
+
+Como OR ‘1’=’1’ será sempre verdadeiro, essa instrução 6(/(&7 agora retornará o primeiro nome da tabela de usuários, independentemente do nome do usuário e da senha.
+
