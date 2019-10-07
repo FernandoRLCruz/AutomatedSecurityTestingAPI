@@ -18,3 +18,5 @@ Ex:. Dados de entrada query:
 
 Como OR ‘1’=’1’ será sempre verdadeiro, essa instrução 6(/(&7 agora retornará o primeiro nome da tabela de usuários, independentemente do nome do usuário e da senha.
 
+
+
