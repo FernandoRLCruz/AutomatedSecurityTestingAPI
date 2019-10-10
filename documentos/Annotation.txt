@@ -16,7 +16,9 @@ Ex:. Dados de entrada query:
 1- SELECT id FROM users WHERE username='$username' AND password='$password'
 2- SELECT username FROM users WHERE username='' or '1'='1' AND password='' or '1'='1'
 
-Como OR ‘1’=’1’ será sempre verdadeiro, essa instrução 6(/(&7 agora retornará o primeiro nome da tabela de usuários, independentemente do nome do usuário e da senha.
+Como OR ‘1’=’1’ será sempre verdadeiro, essa instrução SELECT agora retornará o primeiro nome da tabela de usuários, independentemente do nome do usuário e da senha.
 
+Usando o SQLMap
+Também podemos usar ferramentas para gerar queries SQL automaticamente a fim de executar diversas tarefas em um site usando a injeção de SQL. Tudo de que precisamos é um ponto de injeção; a ferramenta faz o resto. Por exemplo, a listagem 14.1 mostra como isso é feito quando fornecemos um URL potencialmente passível de injeção ao SQLMap do Kali; essa ferramenta testa para saber se há vulnerabilidades de injeção de SQL e executa queries de injeção.
 
 
