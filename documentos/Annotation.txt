@@ -1,5 +1,10 @@
 Injeção de SQL é uma técnica de injeção de código, usada para atacar aplicativos orientados a dados, nos quais instruções SQL nefastas são inseridas em um campo de entrada para execução (por exemplo, para despejar o conteúdo do banco de dados para o invasor). [1] A injeção SQL deve explorar uma vulnerabilidade de segurança no software de um aplicativo, por exemplo, quando a entrada do usuário é filtrada incorretamente para caracteres de escape de cadeia literal incorporados em instruções SQL ou a entrada do usuário não é fortemente tipificada e executada inesperadamente. A injeção de SQL é conhecida principalmente como um vetor de ataque para sites, mas pode ser usada para atacar qualquer tipo de banco de dados SQL.
 
+À medida que a conscientização sobre a segurança de aplicativos da web evoluiu, a injeção de SQL habilidades tornaram-se gradualmente menos difundidas e mais difíceis de detectar e explorar. Muitos aplicativos modernos evitam a injeção de SQL empregando APIs que, se usados corretamente, são inerentemente seguros contra ataques de injeção de SQL.
+Encontrar injeção SQL às vezes é um tarefa difícil, exigindo perseverança para localizar uma ou duas instâncias em um aplicação onde os controles usuais não foram aplicados.
+À medida que essa tendência se desenvolve, métodos para encontrar e explorar a injeção de SQL evoluíram, usando indicadores mais sutis de vulnerabilidades e mais técnicas de exploração refinadas e poderosas.
+
+
 A gravidade dos ataques de injeção SQL é limitada pela habilidade e imaginação do invasor e, em menor grau, pela defesa em contramedidas profundas, como conexões de baixo privilégio com o servidor de banco de dados e assim por diante. Em geral, considere a injeção de SQL uma severidade de alto impacto.
 
 A falha é facilmente detectada e facilmente explorada e, como tal, qualquer site ou pacote de software com uma base mínima de usuários provavelmente estará sujeito a uma tentativa de ataque desse tipo. 
@@ -20,5 +25,7 @@ Como OR ‘1’=’1’ será sempre verdadeiro, essa instrução SELECT agora r
 
 Usando o SQLMap
 Também podemos usar ferramentas para gerar queries SQL automaticamente a fim de executar diversas tarefas em um site usando a injeção de SQL. Tudo de que precisamos é um ponto de injeção; a ferramenta faz o resto. Por exemplo, a listagem 14.1 mostra como isso é feito quando fornecemos um URL potencialmente passível de injeção ao SQLMap do Kali; essa ferramenta testa para saber se há vulnerabilidades de injeção de SQL e executa queries de injeção.
+
+
 
 
