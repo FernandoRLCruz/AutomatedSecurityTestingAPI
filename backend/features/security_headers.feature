@@ -1,7 +1,7 @@
 
 Feature: This feature check if the API is vulnerable to Security Headers.
 
-       @wip
+       
        Scenario Outline: Security Headers attack
         Given I verify api "<url>" using for following methods "<method>"
         When  I include the "<headers>" and "<body>" to request 

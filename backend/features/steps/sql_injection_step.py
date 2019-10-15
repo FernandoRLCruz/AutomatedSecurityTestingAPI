@@ -19,8 +19,7 @@ from urllib.parse import urlparse
 def result_response(context):
     result = []
     try:
-        for row in context.table:
-            result.append(sic.sql_injection_initial(context.url, context.method, context.header_value, context.body_value, context.config.userdata['URL_SQLMAP']))
+        result.append(sic.sql_injection_initial(context.url, context.method, context.header_value, context.body_value, context.config.userdata['URL_SQLMAP']))
         for item in result:
             if item != None:
                 assert_that(item["alert"])                
