@@ -16,21 +16,25 @@ def sqlmap_get_status(sqlmap_url):
             return True
     except:
         result = sqlmap_start_process()
-        return result
+        # return result
 
 def sqlmap_start_process():
     try:
         p = subprocess.Popen(["pip", "show", "sqlmap"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         if out:
-            location_path = out[out.find('Location:')+10:]
-            sqlmap_path = location_path[:location_path.fin('\n')] + '/sqlmap/sqlmapapi.py'
+            out_temp = str(out)
+            location_path = out_temp[out_temp.find('Location:')+10:]
+            # location_path = str(location_path)
+            location_path_temp = location_path.split('\\n')
+            sqlmap_path = location_path_temp[0] + '/sqlmap/sqlmapapi.py'
             if sqlmap_path:
                 start_sqlmap_status = subprocess.Popen(['python', sqlmap_path, '-s'],stdout=subprocess.PIPE)
                 time.sleep(5)
                 while True:
                     line = start_sqlmap_status.stdout.readline()
-                    if "Admin" in line:
+                    line_temp = str(line)
+                    if "Admin" in line_temp:
                         print("sqlmap is started")
                         return True
     except:
