@@ -33,8 +33,6 @@ def sql_injection_initial(url, method, header_value, body_value, sqlmap_url, id_
         task_result = delete_task(taskid, sqlmap_url)
         if task_result is True:
             # Task deleted successfully
-            attack_result = { "id" : 10, "scanid" : id_scan, "url" : url, "alert": "SQL injection", "impact": "High", "req_headers": header_value, "req_body":body_value, "res_headers": "NA" ,"res_body": "NA", "log" : scan_data}
-            return attack_result
             print("SQLi - Task deleted: %s",taskid)
 
 
