@@ -6,6 +6,7 @@ import json
 
 result = ''
 api_header = {'Content-Type' : 'application/json'}
+scan_data = ''
 
 def sql_injection_initial(url, method, header_value, body_value, sqlmap_url, id_scan=None):
     result = sqlmap_get_status(sqlmap_url)
@@ -16,23 +17,25 @@ def sql_injection_initial(url, method, header_value, body_value, sqlmap_url, id_
         set_option_status = set_options_list(url,method,header_value,body_value,taskid, sqlmap_url)
         if set_option_status is True:
             # Everything is set to start the scan
-            start_scan_result = start_scan(taskid)
+            start_scan_result = start_scan(taskid, sqlmap_url)
             if start_scan_result is True:
                 print("SQLi - Scan started.")
-                result = scan_status(taskid)
+                result = scan_status(taskid, sqlmap_url)
                 if result is True:
                     # API is vulnerable
                     print ("[+] is vulnerable to SQL injection")
-                    attack_result = { "id" : 10, "scanid" : scanid, "url" : url, "alert": "SQL injection", "impact": "High", "req_headers": headers, "req_body":body, "res_headers": "NA" ,"res_body": "NA", "log" : scan_data}
-                    dbupdate.insert_record(attack_result)
+                    attack_result = { "id" : 10, "scanid" : id_scan, "url" : url, "alert": "SQL injection", "impact": "High", "req_headers": header_value, "req_body":body_value, "res_headers": "NA" ,"res_body": "NA", "log" : scan_data}
+                    return attack_result
 
         else:
-            logs.logging.info("Sqli - Failed to create a task.") 
+            print("Sqli - Failed to create a task.") 
 
-        task_result = delete_task(taskid)
+        task_result = delete_task(taskid, sqlmap_url)
         if task_result is True:
             # Task deleted successfully
-            logs.logging.info("SQLi - Task deleted: %s",taskid)
+            attack_result = { "id" : 10, "scanid" : id_scan, "url" : url, "alert": "SQL injection", "impact": "High", "req_headers": header_value, "req_body":body_value, "res_headers": "NA" ,"res_body": "NA", "log" : scan_data}
+            return attack_result
+            print("SQLi - Task deleted: %s",taskid)
 
 
 def sqlmap_get_status(sqlmap_url):
@@ -85,4 +88,48 @@ def set_options_list(url, method, headers, body, task_id, sqlmap_url):
         data['data'] = body
     options_list = rg.send_request_generic(options_set_url, "POST", api_header, data)
     if options_list.status_code == 200:
-        return json.loads(options_list.text)['success']        
+        return json.loads(options_list.text)['success']
+
+
+def start_scan(taskid, sqlmap_url):
+    # Starting a new scan
+    data = {}
+    scan_start_url = sqlmap_url + "/scan/" + taskid + "/start"
+    scan_start_resp = rg.send_request_generic(scan_start_url, "POST", api_header, data)
+    if scan_start_resp.status_code == 200:
+        return json.loads(scan_start_resp.text)['success']
+        time.sleep(10)
+
+
+def scan_status(taskid, sqlmap_url):
+    # This function deals checking scan status and also check for vulnerability.
+    status_url = sqlmap_url + "/scan/" + taskid + "/status"
+    while True:
+        status_url_resp = rg.send_request_generic(status_url, "GET", api_header)
+        if json.loads(status_url_resp.text)['status'] == "terminated":
+            result = show_scan_data(taskid, sqlmap_url)
+            return result
+        else:
+            # Wait for 10 second and check the status again
+            time.sleep(10)
+
+
+def show_scan_data(taskid, sqlmap_url):
+    scan_data_url = sqlmap_url +"/scan/"+ taskid + "/data"
+    scan_start_resp = rg.send_request_generic(scan_data_url, "GET", api_header)    
+    scan_data = json.loads(scan_start_resp.text)['data']
+    if scan_data:
+        print("API is vulnerable to sql injection")
+        return True
+    else:
+        print("API is not vulnerable to sql injection")
+        return False
+
+
+def delete_task(taskid, sqlmap_url):
+    # Delete the task once the scan is completed
+    delete_task_url = sqlmap_url + "/task/" + taskid + "/delete"
+    delete_task_req = rg.send_request_generic(delete_task_url, "GET", api_header)
+    if delete_task_req.status_code == 200:
+        return json.loads(delete_task_req.text)['success']
+        

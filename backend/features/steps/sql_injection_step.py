@@ -22,7 +22,7 @@ def result_response(context):
         result.append(sic.sql_injection_initial(context.url, context.method, context.header_value, context.body_value, context.config.userdata['URL_SQLMAP']))
         for item in result:
             if item != None:
-                assert_that(item["alert"])                
+                assert_that(item["impact"], is_("Low"))
 
     except Exception as e:              
         print("Exception from result_response %s", e)
