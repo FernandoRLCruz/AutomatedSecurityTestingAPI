@@ -1,7 +1,7 @@
 
 Feature: This feature check if the API is vulnerable to sql injection attack.
 
-       @wip
+       
        Scenario Outline: Sql injection attack
         Given I verify api "<url>" using for following methods "<method>"
         When  I include the "<headers>" and "<body>" to request 
