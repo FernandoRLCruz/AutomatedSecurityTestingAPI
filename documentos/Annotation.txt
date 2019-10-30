@@ -1,4 +1,10 @@
+Falhas de Injeção ocorrrem quando dados nao confiaveis de usuarios sao enviados a aplicação web como parte de um comando ou de uma consulta, fazendo-a executar comandos não esperados ou acessando dados não autorizados. A injeção ocorre quando se insere dados de entrada maliciosos sobre os quais a aplicação atua de forma não segura. Pode ser considerada um dos tipos de ataque mais antigos da mais continua reinando absoluta nos rakings de vulnerabilidades sendo amplamente disseminada e também possui grande poder de impacto.
 
+Alguns ataques mais comuns de injeção tem como alvo as funcionalidades:
+-Consulta SQL
+-COnsulta LDAP
+-Consulta XPATH
+-Comandos de sistema operacional
 
 SQL, a Structured Query Language, é o padrão de fato para acessar bancos de dados. Atualmente, a maioria dos aplicativos Web usa um banco de dados SQL para armazenar dados persistentes para o inscrição. Qualquer aplicativo da web que você está testando provavelmente usa um banco de dados SQL o back-end. Como muitas linguagens, a sintaxe SQL é uma mistura de instruções do banco de dados e dados do usuário. Se um desenvolvedor não for cuidadoso, os dados do usuário poderão ser interpretados como instruções, e um usuário remoto pode executar instruções arbitrárias no banco de dados.
 
@@ -36,8 +42,14 @@ apóstrofo (\ ') e a barra invertida (\) para a barra invertida dupla (\\) teria
 
 impediu o ataque de exemplo. No entanto, escapar pode ser muito mais complexo. Assim, nós recomendamos encontrar a rotina de escape apropriada para o banco de dados que você está usando. De longe, a melhor solução é usar declarações preparadas. As declarações preparadas foram originalmente projetado para otimizar conectores de banco de dados. Em um nível muito baixo, preparado As instruções separam estritamente os dados do usuário das instruções SQL. Assim, ao usar preparado instruções corretamente, a entrada do usuário nunca será interpretada como instruções SQL.
 
+SqlMap
+
+È uma ferramenta de linha de comando para injeção de SQL, automatiza o processo de detectar e explorar falhas de injeção de SQL contém um sistema interno de detecção e além de inumeras opção de parametros de permitindo assim que uma grande variedade de ataques seja executada em uma aplicação alvo.
+
 Usando o SQLMap
 Também podemos usar ferramentas para gerar queries SQL automaticamente a fim de executar diversas tarefas em um site usando a injeção de SQL. Tudo de que precisamos é um ponto de injeção; a ferramenta faz o resto. Por exemplo, a listagem 14.1 mostra como isso é feito quando fornecemos um URL potencialmente passível de injeção ao SQLMap do Kali; essa ferramenta testa para saber se há vulnerabilidades de injeção de SQL e executa queries de injeção.
+
+
 
 
 
