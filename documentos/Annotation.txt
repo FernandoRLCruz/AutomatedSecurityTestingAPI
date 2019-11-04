@@ -21,6 +21,10 @@ Listas de usuário
 Ao criar uma lista de usuários, inicialmente procure determinar o esquema usado pelo cliente para os nomes de usuário. Por exemplo, se você estiver tentando invadir as contas de email dos funcionários, descubra o padrão seguido pelos endereços de email.
 
 
+É cada vez mais comum que sistemas web tenham proteção contra o uso de força bruta, seja por meio de um captcha, uma equação matemática simples ou um token para login que deva ser submetido com a solicitação. Há várias ferramentas baseadas em força bruta que podem atuar em uma solicitação POST para o script de login, porém, em muitos casos, não são flexíveis o suficiente para lidar com conteúdo dinâmico ou para tratar verificações simples para conferir se se trata de "um ser humano”.
+
+
+
 
 
 
