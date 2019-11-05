@@ -23,7 +23,7 @@ Ao criar uma lista de usuários, inicialmente procure determinar o esquema usado
 
 É cada vez mais comum que sistemas web tenham proteção contra o uso de força bruta, seja por meio de um captcha, uma equação matemática simples ou um token para login que deva ser submetido com a solicitação. Há várias ferramentas baseadas em força bruta que podem atuar em uma solicitação POST para o script de login, porém, em muitos casos, não são flexíveis o suficiente para lidar com conteúdo dinâmico ou para tratar verificações simples para conferir se se trata de "um ser humano”.
 
-
+Nessa situação, qualquer invasor sério usará técnicas automatizadas para tentar adivinhar senhas, com base em longas listas de valores comuns. Dado hoje largura de banda e recursos de processamento, é possível fazer milhares de logins tentativas por minuto a partir de uma conexão PC e DSL padrão. Mesmo o mais senhas robustas acabarão sendo quebradas nesse cenário.
 
 
 
