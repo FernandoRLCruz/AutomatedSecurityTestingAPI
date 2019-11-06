@@ -25,6 +25,11 @@ Ao criar uma lista de usuários, inicialmente procure determinar o esquema usado
 
 Nessa situação, qualquer invasor sério usará técnicas automatizadas para tentar adivinhar senhas, com base em longas listas de valores comuns. Dado hoje largura de banda e recursos de processamento, é possível fazer milhares de logins tentativas por minuto a partir de uma conexão PC e DSL padrão. Mesmo o mais senhas robustas acabarão sendo quebradas nesse cenário.
 
+Discussão
+
+Nomes de usuarios e senhas geralmente podem ser usados a força mesmo na presença da funcionalidade de bloqueio de contas ou outras medidas atenuantes. Os sistemas ao tentar auxiliar gerando mensagens de erro diferentes para usuarios dependendo de nome do usuario ou a senha fornecidas estarem incorretos. Isso se aplicada mesmo depois de bloqueio de conta, pois o atacante devera apenas esperar até que a conta seja desbloqueada para então poder acessa-la. Muitos sistemas desbloqueiam contas automaticamente depois de um periodo de tempo determinado. 
+
+
 
 
 
